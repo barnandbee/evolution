@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hominin Timeline · Human Origins</title>
+<meta name="description" content="An interactive timeline of hominin species and key events in human evolution, with Australian and regional milestones.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%239a4a22'/%3E%3Cpath d='M10 22c2-8 4-12 6-12s4 4 6 12' stroke='%23fff' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="index.html">Human <span>Origins</span></a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="site-nav" id="nav" aria-label="Course">
+    <a href="index.html">Overview</a>
+    <a href="module-1.html">1 · Deep roots</a>
+    <a href="module-2.html">2 · Genus Homo</a>
+    <a href="module-3.html">3 · Our species</a>
+    <a href="module-4.html">4 · Sahul</a>
+    <a href="timeline.html" aria-current="page">Timeline</a>
+    <a href="resources.html">Sources</a>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="display:block"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg></button>
+  </nav>
+</div></header>
+
+<main id="main">
+<div class="wrap">
+  <header class="module-head">
+    <p class="eyebrow">Course tool</p>
+    <h1>Hominin timeline</h1>
+    <p class="lede">Select a species to see when and where it lived and which module covers it. Switch the time window to zoom in on the last half-million years, when several human species lived at the same time.</p>
+  </header>
+
+  <div class="tl-controls" role="group" aria-label="Time window">
+    <button class="chip" type="button" data-range="7.5" aria-pressed="true">Last 7.5 million years</button>
+    <button class="chip" type="button" data-range="2.5" aria-pressed="false">Last 2.5 million years</button>
+    <button class="chip" type="button" data-range="0.5" aria-pressed="false">Last 500,000 years</button>
+  </div>
+  <div class="tl-chart" id="tl-chart"></div>
+  <div class="legend" id="tl-legend"></div>
+  <div class="tl-detail" id="tl-detail" aria-live="polite">
+    <p style="margin:0;color:var(--ink-3)">Select a bar to see details. You can also use Tab and Enter.</p>
+  </div>
+  <p style="font-size:.85rem;color:var(--ink-3);max-width:75ch">Bars show approximate first and last appearances in the fossil record, not the full lifespan of a species. Ranges are rounded and some are debated. Species names follow common usage. Some researchers group or split these differently.</p>
+
+  <h2>Key events</h2>
+  <p style="max-width:70ch">Milestones marked <span class="aus-tag" style="font-size:.7rem;font-weight:700;color:var(--accent);border:1px solid var(--accent-2);border-radius:4px;padding:0 .3rem">AUS</span> come from Australian research or from sites in Australia and our region.</p>
+  <ul class="events-list">
+    <li><span class="when">~7 Ma</span><span><em>Sahelanthropus</em> in Chad: possibly the earliest hominin. <a href="module-1.html#s3">Module 1</a></span></li>
+    <li><span class="when">4.4 Ma</span><span>"Ardi" (<em>Ardipithecus ramidus</em>) lives in woodland in Ethiopia. <a href="module-1.html#s3">Module 1</a></span></li>
+    <li><span class="when">3.66 Ma</span><span>Laetoli footprints record upright walking. <a href="module-1.html#s4">Module 1</a></span></li>
+    <li><span class="when">3.3 Ma</span><span>Oldest known stone tools, at Lomekwi 3, Kenya. <a href="module-1.html#s6">Module 1</a></span></li>
+    <li><span class="when">3.2 Ma</span><span>"Lucy" (<em>Au. afarensis</em>), Ethiopia. <a href="module-1.html#s5">Module 1</a></span></li>
+    <li><span class="when">2.8 Ma</span><span>Earliest <em>Homo</em> jaw, Ledi-Geraru, Ethiopia. <a href="module-2.html#s1">Module 2</a></span></li>
+    <li><span class="when">~2.6 Ma</span><span>Australian-born Raymond Dart's Taung Child (<em>Au. africanus</em>), named 1925. <span class="aus-tag">AUS</span> <a href="module-1.html#case">Module 1</a></span></li>
+    <li><span class="when">~2.1 Ma</span><span>Stone tools at Shangchen, China: the earliest sign of hominins outside Africa. <a href="module-2.html#s4">Module 2</a></span></li>
+    <li><span class="when">~2.0 Ma</span><span>Three hominin genera coexist at Drimolen and Malapa, South Africa (La Trobe-led research). <span class="aus-tag">AUS</span> <a href="module-1.html#s6">Module 1</a></span></li>
+    <li><span class="when">1.8 Ma</span><span>Small-brained <em>Homo</em> at Dmanisi, Georgia. <a href="module-2.html#s4">Module 2</a></span></li>
+    <li><span class="when">1.76 Ma</span><span>First Acheulean handaxes. <a href="module-2.html#s2">Module 2</a></span></li>
+    <li><span class="when">≥1.04 Ma</span><span>Hominins on Sulawesi (Calio) and Flores (Wolo Sege): the first crossings of the Wallace Line. <span class="aus-tag">AUS</span> <a href="module-2.html#s5">Module 2</a></span></li>
+    <li><span class="when">~1 Ma</span><span>Evidence of fire at Wonderwerk Cave, South Africa. <a href="module-2.html#s3">Module 2</a></span></li>
+    <li><span class="when">~700 ka</span><span>Small-bodied hominins at Mata Menge, Flores. <span class="aus-tag">AUS</span> <a href="module-2.html#case">Module 2</a></span></li>
+    <li><span class="when">~430 ka</span><span>Early Neanderthals at Sima de los Huesos, Spain. <a href="module-3.html#s3">Module 3</a></span></li>
+    <li><span class="when">~315 ka</span><span>Earliest <em>Homo sapiens</em> fossils, Jebel Irhoud, Morocco. <a href="module-3.html#s1">Module 3</a></span></li>
+    <li><span class="when">~160 ka</span><span>Denisovan jaw on the Tibetan Plateau (Xiahe). <a href="module-3.html#case1">Module 3</a></span></li>
+    <li><span class="when">117–108 ka</span><span>Last <em>Homo erectus</em> at Ngandong, Java (dating with Australian researchers). <span class="aus-tag">AUS</span> <a href="module-2.html#s4">Module 2</a></span></li>
+    <li><span class="when">100–60 ka</span><span><em>Homo floresiensis</em> remains at Liang Bua, Flores (Indonesian–Australian team). <span class="aus-tag">AUS</span> <a href="module-2.html#case">Module 2</a></span></li>
+    <li><span class="when">~65 ka</span><span>Proposed earliest occupation of Sahul at Madjedbebe, Mirarr Country (debated). <span class="aus-tag">AUS</span> <a href="module-4.html#case1">Module 4</a></span></li>
+    <li><span class="when">60–50 ka</span><span>Main dispersal of <em>Homo sapiens</em> out of Africa. <a href="module-3.html#s2">Module 3</a></span></li>
+    <li><span class="when">≥51.2 ka</span><span>Sulawesi cave painting at Leang Karampuang (Griffith–Indonesian team). <span class="aus-tag">AUS</span> <a href="module-3.html#case2">Module 3</a></span></li>
+    <li><span class="when">50–45 ka</span><span>Main period of interbreeding with Neanderthals. <a href="module-3.html#s4">Module 3</a></span></li>
+    <li><span class="when">~50 ka</span><span>People widely established across Sahul. <span class="aus-tag">AUS</span> <a href="module-4.html#s3">Module 4</a></span></li>
+    <li><span class="when">~42 ka</span><span>Mungo Lady and Mungo Man buried at Lake Mungo. <span class="aus-tag">AUS</span> <a href="module-4.html#case2">Module 4</a></span></li>
+    <li><span class="when">~40 ka</span><span>Neanderthals disappear; most Sahul megafauna extinct. <a href="module-4.html#s4">Module 4</a></span></li>
+    <li><span class="when">23–20 ka</span><span>Willandra Lakes footprints. <span class="aus-tag">AUS</span> <a href="module-4.html#case2">Module 4</a></span></li>
+    <li><span class="when">~8 ka</span><span>Rising seas separate New Guinea from Australia. <span class="aus-tag">AUS</span> <a href="module-4.html#s1">Module 4</a></span></li>
+    <li><span class="when">≥6.6 ka</span><span>Gunditjmara eel aquaculture at Budj Bim. <span class="aus-tag">AUS</span> <a href="module-4.html#s4">Module 4</a></span></li>
+    <li><span class="when">2017</span><span>Mungo Man returned to Country. <span class="aus-tag">AUS</span> <a href="module-4.html#case2">Module 4</a></span></li>
+  </ul>
+</div>
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <p>Dates are approximate and rounded from published studies. See <a href="resources.html">Sources</a> for references. Content current to November 2026.</p>
+</div></footer>
+<script src="assets/app.js"></script>
+<script src="assets/timeline.js"></script>
+</body>
+</html>
