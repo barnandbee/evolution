@@ -20,6 +20,25 @@ Each module includes three interactive activities, spaced every two to three sec
 | 3 | Key sites for our species | How a painting gets a minimum age | Sort: Neanderthal, Denisovan or both? |
 | 4 | Fact, model or inference? | Reading the Madjedbebe section | Match principles to practice |
 
+## Module 1 game: Ages of Evolution
+
+`site/evolve.html` is an original top-down RPG linked from the end of Module 1. Players cross six eras (about 8 to 2 million years ago), collect an Age Stone in each, and answer its question to evolve: last common ancestor → *Sahelanthropus* → *Ardipithecus* → *Au. afarensis* → *Au. africanus* → *Homo habilis* → *Homo erectus*. Stone tools unlock boulders. A fork at 2.4 million years ago lets players try the *Paranthropus* side branch, which reaches a dead end and lets them rewind. It runs by keyboard or on-screen controls, and completion is saved with course progress.
+
+## References
+
+Each module ends with a Harvard-style reference list. In-text citations link to the full reference. `site/resources.html` holds the combined list.
+
+## Videos
+
+Each module has one video slot (`figure.video`). A slot stays hidden until its `data-youtube` attribute holds a YouTube URL or ID. Videos load only when clicked, through youtube-nocookie.com with captions on.
+
+| Slot | Module | Topic |
+|---|---|---|
+| `video-m1` | 1 | Lucy and the first upright walkers |
+| `video-m2` | 2 | The discovery of *Homo floresiensis* |
+| `video-m3` | 3 | Dating the world's oldest cave art in Sulawesi |
+| `video-m4` | 4 | Lake Mungo and the return of Mungo Man |
+
 ## Accessibility
 
 The site targets WCAG 2.2 AA in light and dark mode:
@@ -38,7 +57,8 @@ site/                 Static site published to GitHub Pages
   module-1..4.html    Modules
   timeline.html       Interactive timeline
   resources.html      References, glossary, further study
-  assets/             styles.css, app.js (progress, quizzes), activities.js, timeline.js
+  evolve.html         Module 1 game
+  assets/             styles.css, app.js (progress, quizzes), activities.js, timeline.js, evolve.js, videos.js
 .github/workflows/pages.yml   Deploys site/ to GitHub Pages
 ```
 

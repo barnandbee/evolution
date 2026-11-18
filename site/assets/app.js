@@ -55,6 +55,10 @@
         el.classList.remove("done");
       }
     });
+    document.querySelectorAll("[data-game-status]").forEach(function (el) {
+      el.textContent = state.acts["game-m1"] ? "Completed ✓" : "Not played";
+      el.classList.toggle("done", !!state.acts["game-m1"]);
+    });
     document.querySelectorAll("[data-acts-for]").forEach(function (el) {
       var m = el.getAttribute("data-acts-for");
       var total = document.querySelectorAll('.activity[data-activity^="' + m + '-"]').length;

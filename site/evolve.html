@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ages of Evolution · Human Origins</title>
+<meta name="description" content="Module 1 finale: an RPG where you collect the Ages of evolution and evolve from the last common ancestor to Homo erectus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%239a4a22'/%3E%3Cpath d='M10 22c2-8 4-12 6-12s4 4 6 12' stroke='%23fff' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  .game-shell { max-width: 900px; margin: 0 auto; padding: 2rem 16px 3rem; }
+  .game-hud { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: .6rem; margin: 0 0 .8rem; }
+  .hud-cell { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: .5rem .7rem; font-size: .85rem; }
+  .hud-cell .k { display: block; font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-2); font-weight: 700; }
+  .hud-cell .v { font-weight: 600; }
+  .hud-wide { grid-column: 1 / -1; }
+  .energy { height: 8px; background: var(--surface-2); border-radius: 99px; margin-top: .3rem; overflow: hidden; border: 1px solid var(--control); }
+  .energy span { display: block; height: 100%; background: var(--ok); transition: width .3s; }
+  .chips { display: flex; flex-wrap: wrap; gap: .35rem; margin-top: .25rem; }
+  .age-chip { font-size: .78rem; padding: .1rem .5rem; border-radius: 99px; border: 1px solid var(--control); color: var(--ink-2); }
+  .age-chip.got { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 700; }
+  .stage-wrap { max-width: min(680px, calc((100vh - 180px) * 1.333)); margin: 0 auto; position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--control); background: #1d1a16; }
+  #game { display: block; width: 100%; height: auto; image-rendering: auto; }
+  #game:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+  .game-dialog { position: absolute; inset: 0; background: rgba(20,18,15,.72); display: grid; place-items: center; padding: 12px; }
+  .game-dialog[hidden] { display: none; }
+  .dialog-card { background: var(--surface); color: var(--ink); border-radius: var(--radius); padding: 1.1rem 1.2rem; max-width: 560px; width: 100%; max-height: 100%; overflow: auto; box-shadow: 0 10px 40px rgba(0,0,0,.4); }
+  .dialog-card h2 { margin: 0 0 .5rem; font-size: 1.3rem; }
+  .dialog-card p { margin: 0 0 .7rem; font-size: .95rem; }
+  .dlg-era { font-size: .72rem !important; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--accent); margin-bottom: .3rem !important; }
+  .dlg-cost { color: var(--ink-2); }
+  .evo-line { font-size: 1.05rem !important; }
+  .evo-path { margin: 0 0 .8rem; padding-left: 1.3rem; font-size: .92rem; }
+  #dialog-actions { display: grid; gap: .45rem; margin-top: .6rem; }
+  #dialog-actions .btn { text-align: center; }
+  .controls, .game-log { max-width: 680px; margin-left: auto !important; margin-right: auto !important; }
+  .controls { display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap; margin-top: .8rem; }
+  .dpad { display: grid; grid-template-columns: repeat(3, 52px); grid-template-rows: repeat(2, 52px); gap: 6px; }
+  .dpad button { border-radius: 10px; border: 1px solid var(--control); background: var(--surface); color: var(--ink); font-size: 1.3rem; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; }
+  .dpad button:active { background: var(--accent-soft); }
+  .dpad .up { grid-column: 2; grid-row: 1; } .dpad .left { grid-column: 1; grid-row: 2; } .dpad .down { grid-column: 2; grid-row: 2; } .dpad .right { grid-column: 3; grid-row: 2; }
+  .keys-help { font-size: .88rem; color: var(--ink-2); max-width: 40ch; }
+  kbd { font-family: var(--sans); font-size: .8em; border: 1px solid var(--control); border-bottom-width: 2px; border-radius: 4px; padding: 0 .3em; background: var(--surface); }
+  .game-log { margin-top: .8rem; background: var(--surface); border: 1px solid var(--rule); border-left: 4px solid var(--accent); border-radius: 8px; padding: .6rem .9rem; min-height: 4.5rem; font-size: .92rem; }
+  .game-log p { margin: 0 0 .3rem; color: var(--ink-2); }
+  .game-log p:first-child { color: var(--ink); font-weight: 600; }
+  .intro-card { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 1.4rem; box-shadow: var(--shadow); }
+  .intro-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin: 1rem 0 1.4rem; }
+  .intro-grid div { background: var(--bg); border: 1px solid var(--rule); border-radius: 8px; padding: .8rem 1rem; font-size: .93rem; }
+  .intro-grid strong { display: block; font-family: var(--serif); font-size: 1.05rem; margin-bottom: .2rem; }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="inner">
+  <a class="brand" href="index.html">Human <span>Origins</span></a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="site-nav" id="nav" aria-label="Course">
+    <a href="index.html">Overview</a>
+    <a href="module-1.html" aria-current="page">1 · Deep roots</a>
+    <a href="module-2.html">2 · Genus Homo</a>
+    <a href="module-3.html">3 · Our species</a>
+    <a href="module-4.html">4 · Sahul</a>
+    <a href="timeline.html">Timeline</a>
+    <a href="resources.html">Sources</a>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true" style="display:block"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg></button>
+  </nav>
+</div></header>
+
+<main id="main" class="game-shell">
+  <p class="eyebrow">Module 1 finale · Game · About 10 minutes</p>
+  <h1 style="max-width:none">Ages of Evolution</h1>
+
+  <section id="game-intro" class="intro-card" aria-labelledby="intro-h">
+    <h2 id="intro-h" style="margin-top:0">Collect the Ages. Evolve. Survive.</h2>
+    <p>You begin about 8 million years ago as the last common ancestor of chimpanzees and humans. Travel through six eras of the Module 1 story. Each era has a glowing <strong>Age Stone</strong>: answer its question to evolve into the next species and open the way forward.</p>
+    <div class="intro-grid">
+      <div><strong>Move</strong>Arrow keys or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>, or the on-screen arrows.</div>
+      <div><strong>Collect</strong>Step on an Age Stone (◆) to answer its question. Find the stone tools to break boulders.</div>
+      <div><strong>Survive</strong>Snakes, an eagle and big cats drain your energy. Eat fruit, tubers and marrow to recover.</div>
+      <div><strong>Choose</strong>At about 2.4 million years ago the path forks. Will you specialise, or stay a generalist?</div>
+    </div>
+    <p style="font-size:.9rem;color:var(--ink-2)">The game is a simplified, single path through a branching family tree; real relationships between these species are debated. It is optional and does not affect module completion. A wrong answer costs one energy, and you can always try again.</p>
+    <p><button class="btn" type="button" id="btn-start">Start the journey</button> &nbsp; <a href="module-1.html#game">Back to Module 1</a></p>
+  </section>
+
+  <section id="game-ui" hidden aria-label="Game">
+    <div class="game-hud">
+      <div class="hud-cell"><span class="k">Species</span><span class="v" id="hud-species"></span><span id="hud-ma" style="display:block;font-size:.8rem;color:var(--ink-2)"></span></div>
+      <div class="hud-cell"><span class="k">Energy</span><span class="v" id="hud-energy"></span><div class="energy" aria-hidden="true"><span id="hud-energy-bar"></span></div></div>
+      <div class="hud-cell"><span class="k">Ages collected</span><span class="v" id="hud-ages"></span></div>
+      <div class="hud-cell"><span class="k">Era</span><span class="v" id="hud-zone" style="font-size:.85rem"></span></div>
+      <div class="hud-cell hud-wide"><span class="k">Abilities</span><span id="hud-abil"></span><div class="chips" id="hud-chips"></div></div>
+    </div>
+
+    <div class="stage-wrap">
+      <canvas id="game" width="512" height="384" tabindex="0" role="application" aria-label="Game map. Use the arrow keys to move. Messages appear below the map." aria-describedby="game-log"></canvas>
+      <div class="game-dialog" id="game-dialog" role="dialog" aria-modal="true" aria-labelledby="dialog-title" hidden>
+        <div class="dialog-card"><div id="dialog-body"></div><div id="dialog-actions"></div></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="dpad" aria-label="Movement controls" role="group">
+        <button class="up" type="button" data-dir="0,-1" aria-label="Move up">↑</button>
+        <button class="left" type="button" data-dir="-1,0" aria-label="Move left">←</button>
+        <button class="down" type="button" data-dir="0,1" aria-label="Move down">↓</button>
+        <button class="right" type="button" data-dir="1,0" aria-label="Move right">→</button>
+      </div>
+      <div class="keys-help">
+        <p style="margin:0 0 .5rem">Select the map, then use the arrow keys. Head right to travel forward in time.</p>
+        <button class="btn secondary small" type="button" id="btn-where">Where am I?</button>
+      </div>
+    </div>
+    <div class="game-log" id="game-log" aria-live="polite"></div>
+  </section>
+</main>
+
+<footer class="site-footer"><div class="wrap">
+  <p>Ages of Evolution is an original learning game for Human Origins. Dates are approximate. See the <a href="module-1.html#references">Module 1 references</a>.</p>
+</div></footer>
+<script src="assets/app.js"></script>
+<script src="assets/evolve.js"></script>
+</body>
+</html>

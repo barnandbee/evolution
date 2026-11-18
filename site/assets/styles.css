@@ -377,3 +377,35 @@ footer.site-footer p { max-width: 80ch; }
 .toc .acts-mini { display: block; margin-top: .2rem; }
 .toc .toc-act { font-size: .84rem; color: var(--ink-2); }
 .toc .toc-act::before { content: "◆ "; color: var(--accent); font-size: .7em; vertical-align: 1px; }
+
+/* Harvard citations and reference lists */
+.cite { font-size: .88em; color: var(--ink-2); white-space: normal; }
+.cite a { color: var(--accent); text-decoration: underline dotted; text-underline-offset: 3px; }
+.cite a:hover { color: var(--link-hover); text-decoration-style: solid; }
+.references { margin-top: 3rem; border-top: 1px solid var(--rule); padding-top: .5rem; }
+.ref-note { color: var(--ink-2); font-size: .92rem; }
+.ref-list { list-style: none; padding: 0; margin: 1rem 0; font-size: .92rem; }
+.ref-list li { padding-left: 2em; text-indent: -2em; margin-bottom: .7rem; line-height: 1.55; border-radius: 6px; }
+.ref-list li:target { background: var(--accent-soft); outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* Video embeds */
+figure.video { margin: 2rem 0; }
+figure.video[hidden] { display: none; }
+.video-frame { position: relative; aspect-ratio: 16 / 9; background: #1d1a16; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--control); }
+.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-play { all: unset; cursor: pointer; position: absolute; inset: 0; display: block; }
+.video-play img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.video-play .video-icon { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); transition: transform .15s; }
+.video-play:hover .video-icon { transform: translate(-50%, -50%) scale(1.08); }
+.video-play:focus-visible { outline: 4px solid var(--focus); outline-offset: -4px; }
+figure.video figcaption { font-size: .92rem; color: var(--ink-2); margin-top: .6rem; }
+figure.video figcaption strong { color: var(--ink); }
+figure.video ul { margin: .4rem 0 0; padding-left: 1.2rem; }
+
+/* Game launch card */
+.game-card { display: grid; grid-template-columns: auto 1fr; gap: 1.2rem; align-items: center; margin: 2.5rem 0; padding: 1.3rem; border-radius: var(--radius); background: var(--case-bg); color: var(--case-ink); box-shadow: var(--shadow); }
+.game-card h2 { margin: .2rem 0 .4rem; color: var(--case-ink); font-size: 1.5rem; }
+.game-card p { margin: 0 0 .8rem; color: var(--case-ink); }
+.game-card .box-title { color: var(--case-title); margin: 0; }
+.game-card svg { width: 96px; height: 96px; }
+@media (max-width: 560px) { .game-card { grid-template-columns: 1fr; } }
