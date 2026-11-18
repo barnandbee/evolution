@@ -2,12 +2,12 @@
 (function () {
   "use strict";
   var GROUPS = {
-    early: { label: "Earliest hominins", color: "#7a6a55" },
-    austr: { label: "Australopiths", color: "#c9783f" },
-    paran: { label: "Paranthropus", color: "#8c5a3c" },
-    homoE: { label: "Early Homo", color: "#4f7a8c" },
-    homoL: { label: "Later Homo & relatives", color: "#2f4f6b" },
-    sap: { label: "Homo sapiens", color: "#9a4a22" }
+    early: { label: "Earliest hominins", color: "var(--g-early)" },
+    austr: { label: "Australopiths", color: "var(--g-austr)" },
+    paran: { label: "Paranthropus", color: "var(--g-paran)" },
+    homoE: { label: "Early Homo", color: "var(--g-homoE)" },
+    homoL: { label: "Later Homo & relatives", color: "var(--g-homoL)" },
+    sap: { label: "Homo sapiens", color: "var(--g-sap)" }
   };
 
   var SPECIES = [
@@ -115,7 +115,7 @@
       var r = document.createElementNS(NS, "rect");
       r.setAttribute("x", x1); r.setAttribute("y", y + 4);
       r.setAttribute("width", Math.max(5, x2 - x1)); r.setAttribute("height", rowH - 9);
-      r.setAttribute("fill", GROUPS[sp.g].color);
+      r.setAttribute("style", "fill:" + GROUPS[sp.g].color);
       var hit = document.createElementNS(NS, "rect");
       hit.setAttribute("x", 0); hit.setAttribute("y", y); hit.setAttribute("width", W); hit.setAttribute("height", rowH);
       hit.setAttribute("fill", "transparent");

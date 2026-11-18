@@ -15,6 +15,7 @@
   state.done = state.done || {};
   state.scores = state.scores || {};
   state.notes = state.notes || {};
+  state.acts = state.acts || {};
 
   /* Theme */
   var root = document.documentElement;
@@ -54,6 +55,12 @@
         el.classList.remove("done");
       }
     });
+    document.querySelectorAll("[data-acts-for]").forEach(function (el) {
+      var m = el.getAttribute("data-acts-for");
+      var total = document.querySelectorAll('.activity[data-activity^="' + m + '-"]').length;
+      var n = Object.keys(state.acts).filter(function (k) { return k.indexOf(m + "-") === 0 && state.acts[k]; }).length;
+      el.textContent = Math.min(n, total) + "/" + total + " activities done";
+    });
     document.querySelectorAll("[data-complete-btn]").forEach(function (btn) {
       var m = btn.getAttribute("data-complete-btn");
       btn.textContent = state.done[m] ? "Completed ✓ (click to undo)" : "Mark module complete";
@@ -69,7 +76,7 @@
   document.querySelectorAll("[data-reset-progress]").forEach(function (btn) {
     btn.addEventListener("click", function () {
       if (!confirm("Clear your progress, quiz scores and reflection notes on this device?")) return;
-      state = { done: {}, scores: {}, notes: {} };
+      state = { done: {}, scores: {}, notes: {}, acts: {} };
       save(state); renderProgress();
       document.querySelectorAll(".reflect textarea").forEach(function (ta) { ta.value = ""; });
     });
@@ -107,9 +114,9 @@
           if (ok) correct++;
           opts.forEach(function (x) {
             x.disabled = true;
-            if (x.getAttribute("data-k") === ans) x.classList.add("correct");
+            if (x.getAttribute("data-k") === ans) { x.classList.add("correct"); addMark(x, "✓ Correct answer"); }
           });
-          if (!ok) o.classList.add("wrong");
+          if (!ok) { o.classList.add("wrong"); addMark(o, "✗ Your answer"); }
           var fb = q.querySelector(".q-feedback");
           fb.innerHTML = (ok ? '<strong class="ok">Correct.</strong> ' : '<strong class="no">Not quite.</strong> ') + q.getAttribute("data-explain");
           fb.classList.add("show");
@@ -117,6 +124,10 @@
         });
       });
     });
+
+    function addMark(el, txt) {
+      var m = document.createElement("span"); m.className = "mark"; m.textContent = txt; el.appendChild(m);
+    }
 
     function finish() {
       var score = correct + "/" + qs.length;
@@ -135,7 +146,10 @@
       answered = 0; correct = 0;
       qs.forEach(function (q) {
         delete q.dataset.done;
-        q.querySelectorAll(".q-opt").forEach(function (x) { x.disabled = false; x.classList.remove("correct", "wrong"); });
+        q.querySelectorAll(".q-opt").forEach(function (x) {
+          x.disabled = false; x.classList.remove("correct", "wrong");
+          var m = x.querySelector(".mark"); if (m) m.remove();
+        });
         var fb = q.querySelector(".q-feedback"); fb.classList.remove("show"); fb.innerHTML = "";
       });
       result.className = "quiz-result";
@@ -173,6 +187,11 @@
     }, { rootMargin: "-20% 0px -70% 0px" });
     Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
   }
+
+  window.HumanOrigins = {
+    markActivity: function (id) { if (!state.acts[id]) { state.acts[id] = true; save(state); renderProgress(); } },
+    isActivityDone: function (id) { return !!state.acts[id]; }
+  };
 
   renderProgress();
 })();

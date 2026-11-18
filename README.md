@@ -11,6 +11,25 @@ A four-module, self-paced executive short course on human evolution, from the fi
 
 There is also an interactive hominin timeline and a sources page with references and a glossary.
 
+Each module includes three interactive activities, spaced every two to three sections, in addition to the end-of-module knowledge check:
+
+| Module | Flip cards | Hotspot | Drag and drop |
+|---|---|---|---|
+| 1 | Myth or fact? | Built for walking (skeleton) | Match dating methods to situations |
+| 2 | Island hominins at a glance | Across the Wallace Line (map) | Put early *Homo* in order |
+| 3 | Key sites for our species | How a painting gets a minimum age | Sort: Neanderthal, Denisovan or both? |
+| 4 | Fact, model or inference? | Reading the Madjedbebe section | Match principles to practice |
+
+## Accessibility
+
+The site targets WCAG 2.2 AA in light and dark mode:
+
+- All text meets 4.5:1 contrast; control borders, focus rings, chart marks and hotspot pins meet 3:1.
+- Every activity works by keyboard and touch. Drag and drop also supports select-then-place, so no dragging is required (SC 2.5.7).
+- Right and wrong answers are marked with text and symbols as well as colour.
+- Animations respect `prefers-reduced-motion`.
+- Pages were checked with axe-core (WCAG 2.0/2.1/2.2 A and AA rules) with no violations.
+
 ## Structure
 
 ```
@@ -19,7 +38,7 @@ site/                 Static site published to GitHub Pages
   module-1..4.html    Modules
   timeline.html       Interactive timeline
   resources.html      References, glossary, further study
-  assets/             styles.css, app.js (progress, quizzes), timeline.js
+  assets/             styles.css, app.js (progress, quizzes), activities.js, timeline.js
 .github/workflows/pages.yml   Deploys site/ to GitHub Pages
 ```
 
